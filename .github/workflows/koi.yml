@@ -1,0 +1,29 @@
+name: Generate Git Koi
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every day just after midnight UTC
+  workflow_dispatch: # Allows you to manually trigger it from the Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Git Koi
+        uses: yalongwastaken/git-koi@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          login: YOUR_GITHUB_USERNAME
+          output-dir: koi
+          body: white # You can change this to black, asagi, tea, gold, or platinum
+
+      - name: Commit and Push if Changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update git-koi animation"
+          file_pattern: koi/koi.gif
