@@ -18,7 +18,7 @@ jobs:
         uses: yalongwastaken/git-koi@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          login: YOUR_GITHUB_USERNAME
+          login: unchhohang
           output-dir: koi
           body: white # You can change this to black, asagi, tea, gold, or platinum
 
